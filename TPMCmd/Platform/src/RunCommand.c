@@ -71,7 +71,7 @@ _plat__RunCommand(
     )
 {
     setjmp(s_jumpBuffer);
-    ExecuteCommand(requestSize, request, responseSize, response);
+    ExecuteCommand(requestSize, request, responseSize, response, 0);
 }
     
 

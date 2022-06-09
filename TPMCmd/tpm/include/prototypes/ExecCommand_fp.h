@@ -82,7 +82,8 @@ ExecuteCommand(
     uint32_t         requestSize,   // IN: command buffer size
     unsigned char   *request,       // IN: command buffer
     uint32_t        *responseSize,  // IN/OUT: response buffer size
-    unsigned char   **response      // IN/OUT: response buffer
+    unsigned char   **response,     // IN/OUT: response buffer
+    uint32_t        contextId
 );
 
 #endif  // _EXEC_COMMAND_FP_H_

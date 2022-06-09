@@ -88,7 +88,8 @@ ExecuteCommand(
     uint32_t         requestSize,   // IN: command buffer size
     unsigned char   *request,       // IN: command buffer
     uint32_t        *responseSize,  // IN/OUT: response buffer size
-    unsigned char   **response      // IN/OUT: response buffer
+    unsigned char   **response,     // IN/OUT: response buffer
+    uint32_t         contextId
     )
 {
     // Command local variables
@@ -98,6 +99,8 @@ ExecuteCommand(
     // Response local variables
     UINT32               maxResponse = *responseSize;
     TPM_RC               result;            // return code for the command
+
+    SwitchTpmContext(contextId);
 
 // This next function call is used in development to size the command and response
 // buffers. The values printed are the sizes of the internal structures and
