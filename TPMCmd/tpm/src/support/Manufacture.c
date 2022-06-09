@@ -161,6 +161,39 @@ TPM_TearDown(
     return 0;
 }
 
+LIB_EXPORT int
+TPM_Terminate(
+    uint32_t        contextId
+)
+{
+    SwitchTpmContext(contextId);
+
+    TPM_TearDown();
+    _plat__Signal_PowerOn();
+    _plat__Signal_Reset();
+
+    return 0;
+}
+
+LIB_EXPORT int
+TPM_Initialize(
+    uint32_t        contextId,
+    int             firstTime       // IN: indicates if this is the first call from
+                                    //     main()
+)
+{
+    SwitchTpmContext(contextId);
+
+    _plat__Signal_PowerOff();
+    _plat__NVEnable(NULL);
+    TPM_Manufacture(firstTime);
+
+    _plat__Signal_PowerOn();
+    _plat__SetNvAvail();
+    _plat__NvCommit();
+
+    return 0;
+}
 
 //*** TpmEndSimulation()
 // This function is called at the end of the simulation run. It is used to provoke

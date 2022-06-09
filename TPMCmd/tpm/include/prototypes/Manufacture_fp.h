@@ -77,4 +77,16 @@ TpmEndSimulation(
     void
 );
 
+LIB_EXPORT int
+TPM_Terminate(
+    uint32_t        contextId
+);
+
+LIB_EXPORT int
+TPM_Initialize(
+    uint32_t        contextId,
+    int             firstTime       // IN: indicates if this is the first call from
+                                    //     main()
+);
+
 #endif  // _MANUFACTURE_FP_H_
